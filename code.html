@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income and Expense Tracker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+
+    #container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="number"], input[type="text"], button {
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #history {
+        margin-top: 20px;
+    }
+
+    #history ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #history ul li {
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h2>Income and Expense Tracker BY BYTEBLASTER</h2>
+    <label for="income">Income:</label>
+    <input type="number" id="income">
+    <label for="expense">Expense:</label>
+    <input type="number" id="expense">
+    <label for="remark">Remark:</label>
+    <input type="text" id="remark">
+    <button onclick="calculateBalance()">Check Balance </button>
+    <div id="balance">Balance: 0 /-Rs.</div>
+    <div id="history">
+        <h3>History</h3>
+        <ul id="history-list"></ul>
+        <button onclick="clearHistory()">Clear History</button>
+    </div>
+</div>
+
+<script>
+    let balance = 0;
+    let history = [];
+
+    function calculateBalance() {
+        const income = parseFloat(document.getElementById("income").value);
+        const expense = parseFloat(document.getElementById("expense").value);
+        const remark = document.getElementById("remark").value;
+        
+        balance += (income - expense);
+
+        document.getElementById("balance").textContent = `Balance: ${balance.toFixed(2)}`;
+
+        const transaction = {
+            income: income,
+            expense: expense,
+            remark: remark,
+            balance: balance.toFixed(2)
+        };
+
+        history.push(transaction);
+        updateHistory();
+    }
+
+    function updateHistory() {
+        const historyList = document.getElementById("history-list");
+        historyList.innerHTML = "";
+        history.forEach(transaction => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `Income: $${transaction.income.toFixed(2)} | Expense: $${transaction.expense.toFixed(2)} | Remark: ${transaction.remark} | Balance: $${transaction.balance}`;
+            historyList.appendChild(listItem);
+        });
+        localStorage.setItem("history", JSON.stringify(history));
+    }
+
+    function clearHistory() {
+        history = [];
+        updateHistory();
+    }
+
+    // Load history from local storage
+    document.addEventListener("DOMContentLoaded", function() {
+        const storedHistory = localStorage.getItem("history");
+        if (storedHistory) {
+            history = JSON.parse(storedHistory);
+            updateHistory();
+        }
+    });
+</script>
+</body>
+</html>
