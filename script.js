@@ -14,6 +14,11 @@ function calculateBalance() {
     const income = parseFloat(incomeInput);
     const expense = parseFloat(expenseInput);
 
+    if (expense < 0) {
+        alert("Expense cannot be negative.");
+        return;
+    }
+
     balance += (income - expense);
     document.getElementById("balance").textContent = `Balance: ${balance.toFixed(2)} /-Rs.`;
 
