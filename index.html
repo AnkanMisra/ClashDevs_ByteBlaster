@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Income and Expense Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Income and Expense Tracker</title>
 </head>
 <body>
     <nav>
-        <div class="menuButton" onclick="showSidebar()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <ul>
-            <li class="Logo"><a href="#">ByteBlaster Corporation</a></li>
-            <li class="hideOnMobile"><a href="https://byteblaster-teams.netlify.app/">OUR TEAM</a></li>
+        <h1 class="logo">ByteBlaster Corporation</h1>
+        <ul class="menu">
+            <li class="hideOnmobile"><a href="https://byteblaster-teams.netlify.app/">OUR TEAM</a></li>
+            <li class="menuButton" onclick="showSidebar()">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                </a>
+            </li>
         </ul>
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li onclick="hideSidebar()">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </a>
+            </li>
             <li><a href="https://byteblaster-teams.netlify.app/">OUR TEAM</a></li>
         </ul>
     </nav>
